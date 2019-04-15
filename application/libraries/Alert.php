@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // library plugin req boostrap
 class Alert  {
-	const MODE_SUCCESS          = 1;
-	const MODE_DANGER           = 0;
-	const MODE_INFO           	= 2;
+	const SUCCESS          = 1;
+	const DANGER           = 0;
+	const INFO           	= 2;
 
 	public function __construct(  )
 	{

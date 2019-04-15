@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>K-nn</title>
+  <title><?php echo APP_NAME ?></title>
+    <meta name="description" content="<?php echo APP_NAME ?>" />
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets/images/logo/icon.png"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
  <!-- Bootstrap 3.3.7 -->
@@ -43,10 +45,11 @@
     <header class="main-header">
       <!-- Logo -->
       <a href="<?php echo site_url('admin');?>" class="logo">
+      <img  src="<?php echo base_url() ?>assets/images/logo/icon2.png" alt="Jason's Photo" height="75px" />
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>K</b>NN</span>
+        <span class="logo-mini"><?php echo APP_NAME ?></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>K-</b>NN</span>
+        <span class="logo-lg"><?php echo APP_NAME ?></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -63,17 +66,18 @@
                 <?php if( !empty($this->session->userdata('user_profile_image_path')) ): ?>
                     <img class="user-image" src="<?php echo base_url( "upload/user/" ).$this->session->userdata('user_profile_image_path') ?> " alt="Jason's Photo" />
                 <?php endif; ?>
-                <?php echo $this->session->userdata('user_profile_fullname')?>
+                <?php echo $this->session->userdata('user_name')?>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
                   <?php if( !empty($this->session->userdata('user_profile_image_path')) ): ?>
-                      <img class="nav-user-photo" src="<?php echo base_url( "upload/user/" ).$this->session->userdata('user_profile_image_path') ?> " alt="Jason's Photo" />
+                      <img class="nav-user-photo" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
+                  <?php else: ?>
+                      <img class="nav-user-photo" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
                   <?php endif; ?>
-
                   <p>
-                    <?php echo $this->session->userdata('user_profile_fullname')?>
+                    <?php echo $this->session->userdata('user_name')?>
                     <small>Member since Nov. 2012</small>
                   </p>
                 </li>
@@ -83,7 +87,7 @@
                     <a href="<?php echo site_url('admin/profile')?>" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="<?php echo site_url('user/logout')?>" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="<?php echo site_url('auth/logout')?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
