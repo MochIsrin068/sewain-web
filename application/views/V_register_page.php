@@ -40,9 +40,9 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="<?php echo base_url() ?>">
-          <img src="<?php echo base_url();?>assets/images/logo/icon2.png" height="75px">
-        </a>
+          <a href="<?php echo base_url() ?>">
+            <img src="<?php echo base_url();?>assets/images/logo/icon2.png" height="75px">
+          </a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
@@ -52,8 +52,7 @@
           }else{
             echo"
             <div class='alert alert-info alert-dismissible'>
-              <h4><i class='icon fa fa-globe'></i> Information!</h4>
-              login
+              <h4><i class='icon fa fa-globe'></i> Register </h4>
             </div>
             ";
           }
@@ -61,24 +60,39 @@
 
         <?php echo form_open("");?>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Phone Number" name="identity"/>
+              <?php echo form_input($user_first_name);?>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password" name="user_password" />
+              <?php echo form_input($user_last_name);?>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($user_email);?>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($user_address);?>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($user_phone);?>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($user_password);?>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($password_confirm);?>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
             <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label class="">
-                  <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"></div>  <a href="<?php echo base_url("auth/register");?>">Register</a>
-                </label>
-              </div>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
             </div>
             <!-- /.col -->
           </div>

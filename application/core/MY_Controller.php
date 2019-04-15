@@ -1,33 +1,66 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
-    public $APP_NAME = "jasain";
+    protected $data = array();
     public function __construct()
     {
        parent::__construct();
-
     }
+    protected function render($the_view = NULL, $template = 'master')
+	{
+		if($template == 'json' || $this->input->is_ajax_request())
+		{
+			header('Content-Type: application/json');
+			echo json_encode($this->data);
+		}
+		elseif(is_null($template))
+		{
+			$this->load->view($the_view, $this->data );
+		}
+		else
+		{
+			$this->data['the_view_content'] = (is_null($the_view)) ? '' : $this->load->view($the_view, $this->data, TRUE);
+			$this->load->view('templates/V_' . $template . '', $this->data);
+		}
+	}
 }
 
 class User_Controller extends MY_Controller
 {
-  public function __construct()
+    public function __construct()
     {
        parent::__construct();
-       
+       if( !$this->user_auth->logged_in() ) redirect(site_url('/auth/login'));
     }
+    protected function render($the_view = NULL, $template = 'admin_master')
+	{
+		parent::render($the_view, $template);
+	}
+    
 }
 
 class Admin_Controller extends User_Controller
 {
-   public function __construct()
+    public function __construct()
     {
        parent::__construct();
-        if(
-            $this->session->userdata('user_level') != 1
-        )
-        {
-            redirect(site_url('/user/login'));
-        }
+        if(!$this->user_auth->is_admin()) redirect(site_url('/auth/login'));
     }
+    protected function render($the_view = NULL, $template = 'admin_master')
+	{
+		parent::render($the_view, $template);
+	}
+}
+
+class Public_Controller extends MY_Controller
+{
+
+	function __construct()
+	{
+		parent::__construct();
+    }
+    protected function render($the_view = NULL, $template = NULL)
+	{
+		parent::render($the_view, $template);
+	}
 }
