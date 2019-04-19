@@ -49,16 +49,16 @@ class Auth extends Public_Controller
 
                 $this->form_validation->set_rules('user_first_name',  $this->lang->line('create_user_validation_fname_label'), 'trim|required');
 		$this->form_validation->set_rules('user_last_name', $this->lang->line('create_user_validation_lname_label') , 'trim|required');
-		if ($identity_column !== 'user_phone')
+                if ($identity_column !== 'user_email')
 		{
-			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required');
-			$this->form_validation->set_rules('user_phone', $this->lang->line('create_user_validation_phone_label'), 'trim|required');
+			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['table_user'] . '.' . $identity_column . ']');
+			$this->form_validation->set_rules('user_email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email');
 		}
 		else
 		{
-			$this->form_validation->set_rules('user_phone', $this->lang->line('create_user_validation_phone_label'), 'trim|required');
+			$this->form_validation->set_rules('user_email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['table_user'] . '.user_email]');
 		}
-		$this->form_validation->set_rules('user_email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['table_user'] . '.user_email]');
+                $this->form_validation->set_rules('user_phone', $this->lang->line('create_user_validation_phone_label'), 'trim|required');
 		$this->form_validation->set_rules('user_address', $this->lang->line('create_user_validation_address_label'), 'trim|required');
 		
 		$this->form_validation->set_rules('user_password', $this->lang->line('create_user_validation_password_label') , 'required|min_length[' . $this->config->item('min_password_length', 'user_auth') . ']|max_length[' . $this->config->item('max_password_length', 'user_auth') . ']|matches[password_confirm]');
@@ -68,7 +68,7 @@ class Auth extends Public_Controller
 		{
 			$user_email = strtolower($this->input->post('user_email'));
 			$user_phone = strtolower($this->input->post('user_phone'));
-			$identity = ($identity_column === 'user_phone') ? $user_phone : $this->input->post('identity');
+                        $identity = ($identity_column === 'user_email') ? $user_email : $this->input->post('identity');
 			$user_password = $this->input->post('user_password');
 
 			$additional_data = array(
@@ -96,7 +96,7 @@ class Auth extends Public_Controller
                                 'type' => 'text',
                                 'placeholder' => 'Nama Depan',
                                 'class' => 'form-control',
-				'value' => $this->form_validation->set_value('user_first_name', 'test'),
+				'value' => $this->form_validation->set_value('user_first_name', 'alan'),
 			);
 			$this->data['user_last_name'] = array(
 				'name' => 'user_last_name',
@@ -104,7 +104,7 @@ class Auth extends Public_Controller
                                 'type' => 'text',
                                 'placeholder' => 'Nama Belakang',
                                 'class' => 'form-control',
-				'value' => $this->form_validation->set_value('user_last_name', "tes"),
+				'value' => $this->form_validation->set_value('user_last_name', "hetfield"),
 			);
 			$this->data['user_email'] = array(
 				'name' => 'user_email',
@@ -128,7 +128,7 @@ class Auth extends Public_Controller
                                 'type' => 'text',
                                 'placeholder' => 'Alamat',
                                 'class' => 'form-control',
-				'value' => $this->form_validation->set_value('user_address', "tes"),
+				'value' => $this->form_validation->set_value('user_address', "jalanan"),
 			);
 			$this->data['user_password'] = array(
 				'name' => 'user_password',
@@ -136,7 +136,7 @@ class Auth extends Public_Controller
                                 'type' => 'password',
                                 'placeholder' => 'Password',
                                 'class' => 'form-control',
-				'value' => $this->form_validation->set_value('user_password', "tes"),
+				'value' => $this->form_validation->set_value('user_password', "admin"),
 			);
 			
 			$this->data['password_confirm'] = array(
@@ -145,7 +145,7 @@ class Auth extends Public_Controller
                                 'type' => 'password',
                                 'placeholder' => 'Konfirmasi Password',
                                 'class' => 'form-control',
-				'value' => $this->form_validation->set_value('password_confirm', "tes"),
+				'value' => $this->form_validation->set_value('password_confirm', "admin"),
 			);
                         $this->render( "V_register_page" );
                 }

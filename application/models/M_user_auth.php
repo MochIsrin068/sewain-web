@@ -267,9 +267,7 @@ class M_user_auth extends CI_Model
 	public function update_last_login($id_user)
 	{
 		$this->load->helper('date');
-
 		$this->db->update($this->tables['table_user'], array('user_last_login' => time()), array('id_user' => $id_user));
-
 		return $this->db->affected_rows() == 1;
 	}
 	/**
@@ -334,7 +332,6 @@ class M_user_auth extends CI_Model
 		{
 			$groups[] = $default_group->id_group;
 		}
-
 		if (!empty($groups))
 		{
 			// add to groups
@@ -345,6 +342,66 @@ class M_user_auth extends CI_Model
 		}
 		
 		return (isset($id_user)) ? $id_user : FALSE;
+	}
+	/**
+	 * update
+	 *
+	 * @param int|string $id
+	 * @param array      $data
+	 *
+	 * @return bool
+	 * @author Phil Sturgeon
+	 */
+	public function update($id_user, array $data)
+	{
+
+		$user = $this->user($id_user)->row();
+
+		$this->db->trans_begin();
+
+		if (array_key_exists($this->identity_column, $data) && $this->identity_check($data[$this->identity_column]) && $user->{$this->identity_column} !== $data[$this->identity_column])
+		{
+			$this->db->trans_rollback();
+			$this->set_error('account_creation_duplicate_identity');
+
+			$this->set_error('update_unsuccessful');
+
+			return FALSE;
+		}
+
+		// Filter the data passed
+		$data = $this->_filter_data($this->tables['table_user'], $data);
+
+		if (array_key_exists($this->identity_column, $data) || array_key_exists('user_password', $data) || array_key_exists('user_email', $data))
+		{
+			if (array_key_exists('user_password', $data))
+			{
+				if( ! empty($data['user_password']))
+				{
+					$data['user_password'] = md5( $data['user_password'] ); 
+				}
+				else
+				{
+					// unset password so it doesn't effect database entry if no password passed
+					unset($data['user_password']);
+				}
+			}
+		}
+
+		$this->db->update($this->tables['table_user'], $data, array('id_user' => $user->id_user));
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+
+			$this->set_error('update_unsuccessful');
+			return FALSE;
+		}
+
+		$this->db->trans_commit();
+
+		$this->set_message('update_successful');
+		return TRUE;
 	}
 	/**
 	 * delete_user

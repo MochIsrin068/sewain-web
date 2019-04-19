@@ -9,6 +9,7 @@ class Alert  {
 
 	public function __construct(  )
 	{
+		
 			// Do something with $params
 	}
 

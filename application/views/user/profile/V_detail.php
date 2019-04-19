@@ -1,56 +1,159 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    <?php echo $page_name ?>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Dashboard</li>
-  </ol>
-</section>
-<!-- alert  -->
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+        <?php
+            if($this->session->flashdata('alert')){
+            echo $this->session->flashdata('alert');
+            }
+        ?>
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<!-- Page content -->
 <?php
-    if($this->session->flashdata('alert')){
-        echo $this->session->flashdata('alert');
-    }
+foreach($users as $user):
 ?>
-<!-- alert  -->
-
-<!-- Main content -->
-<section class="content">
-    <?php foreach( $users as $user ):  ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-body">
-                    <!-- - -->
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h2><?php echo $user->user_first_name." ".$user->user_last_name ." ( ".$user->user_username." ) "  ?> </h2>
-                            <h4> Alamat : <?php echo $user->user_address ?> </h4>
-                            <h4> <?php echo $user->user_email ?> </h4>
-                            <h4> <?php echo $user->user_phone ?> </h4>
-                            <br><br>
-                            <a href="<?php echo site_url('user/profile/edit') ?>" class="btn btn-white btn-info btn-bold btn-m">
-                                Edit 
-                            </a>
-                        </div>
-                        <div class="col-xs-6">
-                            <center>
-                                <div style="background-color: grey ; padding : 8px">
-                                    <img src="<?php echo base_url()."upload/user/".$user->user_image  ?>" alt="" height="300" width="auto" >
-                                </div>
-                            </center>  
+<div class="container-fluid mt--7">
+    <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+                <a href="#">
+                    <img src="<?php  echo $a =  ( empty($user->user_image) ) ?  base_url('assets-front').'/assets/img/theme/team-4-800x800.jpg' : base_url('uploads/users_photo/').$user->user_image ?>" class="rounded-circle">
+                </a>
+            </div>
+            </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+            <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+            </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+            <div class="row">
+            <div class="col">
+                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div>
+                    <span class="heading">22</span>
+                    <span class="description">Friends</span>
+                </div>
+                <div>
+                    <span class="heading">10</span>
+                    <span class="description">Photos</span>
+                </div>
+                <div>
+                    <span class="heading">89</span>
+                    <span class="description">Comments</span>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="text-center">
+            <h3>
+                Jessica Jones<span class="font-weight-light">, 27</span>
+            </h3>
+            <div class="h5 font-weight-300">
+                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+            </div>
+            <div class="h5 mt-4">
+                <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            </div>
+            <div>
+                <i class="ni education_hat mr-2"></i>University of Computer Science
+            </div>
+            <hr class="my-4" />
+            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+            <a href="#">Show more</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+            <div class="col-8">
+                <h3 class="mb-0"><?php echo $page_title ?></h3>
+            </div>
+            <div class="col-4 text-right">
+                <a href="<?php echo site_url('user/profile/edit') ?>" class="btn btn-sm btn-primary">Edit</a>
+            </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form>
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_username ?>" readonly>
                         </div>
                     </div>
-                    <!--  -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_email ?>" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-username">Phone</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_phone ?>" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">First name</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_first_name ?>" readonly>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Last name</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_last_name ?>" readonly>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label class="form-control-label" for="input-address">Address</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="<?php echo $user->user_address ?>" readonly>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+                <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                </div>
+            </div>
+            </form>
         </div>
-    <?php endforeach;  ?>
-</section>
-<!-- /.content -->
+        </div>
+    </div>
+    </div>
 </div>
+<?php
+ endforeach;
+?>
+

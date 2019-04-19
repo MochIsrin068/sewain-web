@@ -88,3 +88,6 @@ $lang['email_forgot_password_link']					= 'Setel Ulang Kata Sandi';
 $lang['email_new_password_subject']					= 'Kata Sandi Baru';
 $lang['email_new_password_heading']					= 'Kata Sandi Baru Untuk %s';
 $lang['email_new_password_subheading']			    = 'Kata Sandi Telah Diubah Ke: %s';
+// upload file
+$lang['upload_successful']							= 'berhasil upload foto';
+$lang['upload_unsuccessful']						= 'Gagal upload foto';

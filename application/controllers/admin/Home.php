@@ -8,7 +8,7 @@ class Home extends Admin_Controller {
 	} 
 	public function index()
 	{
-		$this->data[ "page_name" ] = "Beranda";
+		$this->data[ "page_title" ] = "Beranda";
 		$this->render( "admin/dashboard/content" );
 	}
 }

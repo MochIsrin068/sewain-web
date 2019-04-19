@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Class Ion_auth
+ * Class User_auth
  */
 class User_auth
 {
@@ -182,6 +182,49 @@ class User_auth
 		 * if all, true
 		 */
 		return $check_all;
+	}
+	/**
+	 * upload_photo
+	 *
+	 * @return true
+	 * @author alanHetfielD
+	 **/
+	public function upload_photo( $file )
+	{
+		$user = $this->user_auth->user()->row();//curr user
+		$upload = $this->config->item('upload', 'user_auth');
+
+		$config['upload_path']          = './uploads/users_photo/';
+		$config['allowed_types']        = 'gif|jpg|png|jpeg';
+		$config['overwrite']			="true";
+		$config['max_size']				=20000000;
+		$config['file_name'] 			=  $upload['user_image_file_name'].$user->id_user."_".time();
+		// $config['max_width']            = 768;
+		// $config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload( $file ) )
+		{
+			$this->set_error( $this->upload->display_errors() );
+			$this->set_error( 'upload_unsuccessful' );
+			return FALSE;
+		}
+		else
+		{
+			$file_data = $this->upload->data();
+			$data['user_image'] = $file_data['file_name'];
+
+			$old_user_image = $user->user_image;
+			// check to see if we are updating the user
+			if ( $this->m_user_auth->update( $user->id_user, $data) )
+			{
+				$this->set_message('upload_successful');
+				@unlink( $config['upload_path'].$user->user_image );
+				return TRUE;
+			}
+		}
+		$this->set_error( 'upload_unsuccessful' );
+		return FALSE;
 	}
 	/**
 	 * Logout

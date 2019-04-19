@@ -18,7 +18,7 @@ $config['database_group_name'] = '';
 */
 $config['tables']['table_user']                  = 'table_user';
 $config['tables']['table_user_profile']          = 'table_user_profile';
-$config['tables']['table_group']          		 = 'table_group';
+$config['tables']['table_group']	    		 = 'table_group';
 $config['tables']['table_user_group']          	 = 'table_user_group';
 /*
  | join untuk table_user_profile dan table_user 
@@ -40,7 +40,7 @@ $config['site_title']                 = "Example.com";       // Site Title, exam
 $config['admin_email']                = "admin@example.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'members';           // Default group, use name
 $config['admin_group']                = 'admin';            // Default administrators group, use name
-$config['identity']                   = 'user_phone';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
+$config['identity']                   = 'user_email';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
 $config['min_password_length']        = 5;                   // Minimum Required Length of Password
 $config['max_password_length']        = 10;                  // Maximum Allowed Length of Password
 
@@ -69,3 +69,10 @@ $config['message_start_delimiter'] = '<p>'; 	// Message start delimiter
 $config['message_end_delimiter']   = '</p>'; 	// Message end delimiter
 $config['error_start_delimiter']   = '<p>';		// Error message start delimiter
 $config['error_end_delimiter']     = '</p>';	// Error message end delimiter
+/*
+| -------------------------------------------------------------------------
+| upload file.
+| -------------------------------------------------------------------------
+| Database table names.
+*/
+$config['upload']['user_image_file_name']                  = 'JASAIN_USER_';

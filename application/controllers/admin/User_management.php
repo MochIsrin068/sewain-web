@@ -9,10 +9,11 @@ class User_management extends Admin_Controller {
 	} 
 	public function index( $id_user = NULL )
 	{
-		$this->data[ "page_name" ] = "User Management";
+		$this->data[ "page_title" ] = "User Management";
 		
 		if( !$id_user == NULL )
 		{
+			$this->data[ "page_title" ] = "User Account";
 			$this->data[ "users" ] = $this->user_auth->user( $id_user )->result();
 			$this->render( "admin/user_management/V_detail" );
 		} 
@@ -21,5 +22,17 @@ class User_management extends Admin_Controller {
 			$this->data[ "users" ] = $this->user_auth->users()->result();
 			$this->render( "admin/user_management/V_list" );
 		}
+	}
+	public function delete_user( $id_user = NULL )
+	{
+		if( !($_POST) ) redirect(site_url('admin'));  
+
+		$id_user = $this->input->post('id_user');
+		if( $this->user_auth->delete_user( $id_user ) ){
+			$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::SUCCESS, $this->user_auth->messages() ) );
+		}else{
+			$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, $this->user_auth->errors() ) );
+		}
+		redirect(site_url('admin/user_management'));  
 	}
 }
