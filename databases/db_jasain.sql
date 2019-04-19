@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2019 at 12:34 AM
+-- Generation Time: Apr 19, 2019 at 03:24 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `table_category`
+--
+
+CREATE TABLE `table_category` (
+  `id_category` int(11) NOT NULL,
+  `category_name` varchar(200) NOT NULL,
+  `category_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_category`
+--
+
+INSERT INTO `table_category` (`id_category`, `category_name`, `category_description`) VALUES
+(1, 'kebersihan', 'kebersihan');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `table_group`
 --
 
@@ -41,6 +60,49 @@ CREATE TABLE `table_group` (
 INSERT INTO `table_group` (`id_group`, `group_name`, `group_description`) VALUES
 (1, 'admin', 'admin'),
 (2, 'members', 'members');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_portofolio`
+--
+
+CREATE TABLE `table_portofolio` (
+  `id_portofolio` int(11) NOT NULL,
+  `portofolio_name` varchar(200) NOT NULL,
+  `portofolio_description` text NOT NULL,
+  `portofolio_images` text NOT NULL,
+  `id_service` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_portofolio`
+--
+
+INSERT INTO `table_portofolio` (`id_portofolio`, `portofolio_name`, `portofolio_description`, `portofolio_images`, `id_service`) VALUES
+(2, 'kegiatan 1', 'kegiatan 1', 'kegiatan 1', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_service`
+--
+
+CREATE TABLE `table_service` (
+  `id_service` int(11) NOT NULL,
+  `service_name` varchar(200) NOT NULL,
+  `service_description` text NOT NULL,
+  `service_images` text NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_service`
+--
+
+INSERT INTO `table_service` (`id_service`, `service_name`, `service_description`, `service_images`, `id_user`, `id_category`) VALUES
+(2, 'bersih-bersih', 'bersih-bersih', 'bersih-bersih', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -69,11 +131,8 @@ CREATE TABLE `table_user` (
 --
 
 INSERT INTO `table_user` (`id_user`, `ip_address`, `user_username`, `user_password`, `user_email`, `user_phone`, `user_status`, `user_last_login`, `create_date`, `user_first_name`, `user_last_name`, `user_image`, `user_address`) VALUES
-(1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '1234', 1, 1555340159, 123443, 'muh alfalah', 'madukubah', '', ''),
-(8, '::1', '12341', 'b93939873fd4923043b9dec975811f66', 'admin@admin.com', '12341', 1, 0, 1554823291, 'tes', 'tes', '', 'tes'),
-(9, '::1', '123443', 'b93939873fd4923043b9dec975811f66', 'admin21@admin.com', '123443', 1, 0, 1554823499, 'tes', 'tes', '', 'tes'),
-(11, '::1', '12341', '19fd7be891222ed1dfc041e01fa19e13', 'admin1221@admin.com', '12341221', 1, 0, 1554836027, 'tes', 'tes', '', 'tes'),
-(13, '::1', '1234321', 'b93939873fd4923043b9dec975811f66', 'admfdsain@admin.com', '1234321', 1, 0, 1555311581, 'test', 'tes', '', 'tes');
+(1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '1234', 1, 1555586294, 123443, 'muh alfalah', 'madukubah', 'JASAIN_USER_1_1555579157.jpeg', 'jalanan'),
+(15, '::1', 'admin@admin.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin@admin.com', '1234', 1, 1555668356, 1555585225, 'alan', 'hetfield', 'JASAIN_USER_15_1555585269.jpeg', 'jln mutiara no 8');
 
 -- --------------------------------------------------------
 
@@ -93,20 +152,38 @@ CREATE TABLE `table_user_group` (
 
 INSERT INTO `table_user_group` (`id_user_group`, `id_user`, `id_group`) VALUES
 (1, 1, 1),
-(4, 8, 2),
-(5, 9, 2),
-(7, 11, 2),
-(9, 13, 2);
+(11, 15, 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `table_category`
+--
+ALTER TABLE `table_category`
+  ADD PRIMARY KEY (`id_category`);
+
+--
 -- Indexes for table `table_group`
 --
 ALTER TABLE `table_group`
   ADD PRIMARY KEY (`id_group`);
+
+--
+-- Indexes for table `table_portofolio`
+--
+ALTER TABLE `table_portofolio`
+  ADD PRIMARY KEY (`id_portofolio`),
+  ADD KEY `id_service` (`id_service`);
+
+--
+-- Indexes for table `table_service`
+--
+ALTER TABLE `table_service`
+  ADD PRIMARY KEY (`id_service`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_category` (`id_category`);
 
 --
 -- Indexes for table `table_user`
@@ -127,26 +204,56 @@ ALTER TABLE `table_user_group`
 --
 
 --
+-- AUTO_INCREMENT for table `table_category`
+--
+ALTER TABLE `table_category`
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `table_group`
 --
 ALTER TABLE `table_group`
   MODIFY `id_group` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `table_portofolio`
+--
+ALTER TABLE `table_portofolio`
+  MODIFY `id_portofolio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `table_service`
+--
+ALTER TABLE `table_service`
+  MODIFY `id_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `table_user`
 --
 ALTER TABLE `table_user`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `table_user_group`
 --
 ALTER TABLE `table_user_group`
-  MODIFY `id_user_group` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user_group` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `table_portofolio`
+--
+ALTER TABLE `table_portofolio`
+  ADD CONSTRAINT `table_portofolio_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `table_service` (`id_service`);
+
+--
+-- Constraints for table `table_service`
+--
+ALTER TABLE `table_service`
+  ADD CONSTRAINT `table_service_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `table_category` (`id_category`);
 
 --
 -- Constraints for table `table_user_group`
