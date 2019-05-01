@@ -6,7 +6,7 @@ class Home extends User_Controller {
 	public function index()
 	{
 		// TODO : halaman dashbord untuk user yang sudah terdaftar 
-		$this->data[ "page_title" ] = "User Management";
+		$this->data[ "page_title" ] = "User";
 		$this->render( "user/dashboard/content" );
 	}
 }

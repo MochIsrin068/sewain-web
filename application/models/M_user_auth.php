@@ -242,14 +242,15 @@ class M_user_auth extends CI_Model
 	public function set_session($user)
 	{
 		$session_data = array(
-		    'identity'             => $user->{$this->identity_column},
-		    $this->identity_column => $user->{$this->identity_column},
+			'identity'             		=> $user->{$this->identity_column},
+		    $this->identity_column		=> $user->{$this->identity_column},
 		    'user_email'                => $user->user_email,
-		    'user_username'                => $user->user_username,
+		    'user_username'             => $user->user_username,
 		    'user_phone'                => $user->user_phone,
-		    'id_user'              => $user->id_user, //everyone likes to overwrite id so we'll use user_id
-		    'old_last_login'       => $user->user_last_login,
-		    'user_name'       => $user->user_first_name." ".$user->user_last_name  ,
+		    'id_user'              		=> $user->id_user, 
+		    'old_last_login'       		=> $user->user_last_login,
+		    'user_name'       			=> $user->user_first_name." ".$user->user_last_name  ,
+		    'user_image'       			=> $user->user_image,
 		);
 
 		$this->session->set_userdata($session_data);

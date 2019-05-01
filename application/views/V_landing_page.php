@@ -1,338 +1,118 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo APP_NAME ?></title>
+  <meta name="description" content="<?php echo APP_NAME ?>" />
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets/images/logo/icon.png"/>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/_all-skins.min.css">
 
-  <!-- Favicon -->
-  <link href="<?php echo base_url();?>assets/images/logo/icon.png" rel="icon" type="image/png">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
-  <!-- Icons -->
-  <link href="<?php echo base_url();?>assets-front/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>assets-front/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Style CSS -->
-  <link type="text/css" href="<?php echo base_url();?>assets-front/assets/css/style.css" rel="stylesheet">
-  <!-- Argon CSS -->
-  <link type="text/css" href="<?php echo base_url();?>assets-front/assets/css/argon.css?v=1.0.0" rel="stylesheet">
-  <!-- Docs CSS -->
-  <link type="text/css" href="<?php echo base_url();?>assets-front/assets/css/docs.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<body class="hold-transition skin-blue layout-top-nav">
+  <div class="wrapper">
+    <header class="main-header">
+      <nav class="navbar navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="<?php echo base_url();?>" class="navbar-brand"><b><?php echo APP_NAME ?></b> </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
 
-<body>
-  <header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
-      <div class="container">
-        <a class="navbar-brand mr-lg-5" href="./index.html">
-          <img src="<?php echo base_url();?>assets/images/logo/icon.png"> <span class="text-brand"><?php echo APP_NAME ?></span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar_global">
-          <div class="navbar-collapse-header">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a href="./index.html">
-                  <img src="<?php echo base_url();?>assets/images/logo/icon.png"> <span class="text-brand"><?php echo APP_NAME ?></span>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+              <li><a href="#">menu1</a></li>
+              <li><a href="#">menu2</a></li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="<?php echo site_url('auth/register');?>" >
+                  <span class="hidden-xs">Sign up</span>
                 </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-            <li class="nav-item">
-              <a href="#" class="nav-link" role="button">
-                <span class="badge badge-pill badge-primary">5</span>
-                <i class="ni ni-ui-04 d-lg-none"></i>
-                <span class="nav-link-inner--text">Keranjang Belanjaanku</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" role="button">
-                <i class="ni ni-collection d-lg-none"></i>
-                <span class="nav-link-inner--text">Tokoku Sendiri</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Pantau terus Facebook kami">
-                <i class="fa fa-facebook-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow juga ya Instagram kami">
-                <i class="fa fa-instagram"></i>
-                <span class="nav-link-inner--text d-lg-none">Instagram</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown d-none d-lg-block">
-              <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
-                  <img src="<?php echo base_url();?>assets-front/assets/img/theme/team-1-800x800.jpg" alt="Raised circle image" class="img-fluid rounded-circle shadow-lg" style="width: 45px;">
-              </a>
-              <div class="dropdown-menu">
-                <a href="<?php echo base_url();?>assets-front/examples/landing.html" class="dropdown-item">Profile</a>
-                <a href="<?php echo base_url();?>assets-front/examples/profile.html" class="dropdown-item">Setting</a>
-                <a href="<?php echo base_url();?>assets-front/examples/login.html" class="dropdown-item">Keluar</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <div class="position-relative">
-      <!-- Hero for FREE version -->
-      <section class="section-hero section-shaped my-0">
-        <div class="shape shape-style-1 shape-primary">
-          <span class="span-150"></span>
-          <span class="span-50"></span>
-          <span class="span-50"></span>
-          <span class="span-75"></span>
-          <span class="span-100"></span>
-          <span class="span-75"></span>
-          <span class="span-50"></span>
-          <span class="span-100"></span>
-          <span class="span-50"></span>
-          <span class="span-100"></span>
-        </div>
-        <div class="container shape-container d-flex align-items-center">
-          <div class="col px-0">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-7 text-center pt-lg">
-                <h1 class="text-lg text-white">Selamat datang di MaratonShop!</h1>
-                <p class="lead text-white mt-4 mb-5">Temukan berbagai barang dengan pembelian secara cepat (flash sale)</p>
-                <div class="btn-wrapper">
-                  <a href="#mulai-belanja" class="btn btn-info btn-lg mb-3 mb-sm-0" data-toggle="scroll">
-                    <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
-                    <span class="btn-inner--text">Mulai Belanja</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section class="section section-lg section-shaped overflow-hidden my-0" id="mulai-belanja">
-      <div class="shape shape-style-1 shape-default shape-skew">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="container py-0 pb-lg">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-lg-5 mb-5 mb-lg-0">
-            <h1 class="text-white font-weight-light">Produk Paling Laris Gaes!</h1>
-            <p class="lead text-white mt-4">Segera beli produk-produk paling laris di online shop ini, cepetan keburu habis. Kalo kehabisan belum tentu ada untuk kali kedua loh.</p>
-            <a href="#" class="btn btn-info mt-4">Aku Pengen Beli</a>
-            <a href="#semua-produk" class="btn btn-white mt-4" data-toggle="scroll">Lihat Produk Lain</a>
-          </div>
-          <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
-              <div id="carousel_example" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel_example" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel_example" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="img-fluid" src="<?php echo base_url();?>assets-front/assets/img/theme/img-1-1200x1000.jpg" alt="First slide">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="img-fluid" src="<?php echo base_url();?>assets-front/assets/img/theme/img-2-1200x1000.jpg" alt="Second slide">
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carousel_example" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
+              </li>
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="<?php echo site_url('auth/login');?>" >
+                  <span class="hidden-xs">Log in</span>
                 </a>
-                <a class="carousel-control-next" href="#carousel_example" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section section-components pb-0" id="semua-produk">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <!-- Basic elements -->
-            <h2 class="mb-5">
-              <span>Semua Produk</span>
-            </h2>
-
-            <div class="row row-grid">
-                <div class="col-lg-4 pb-5">
-                  <div class="card card-lift--hover shadow border-0">
-                    <div class="card-body py-5">
-                      <img class="card-img-top" src="<?php echo base_url();?>assets-front\assets\img\theme\profile.jpg" alt="Card image cap">
-                      <h6 class="text-primary text-uppercase pt-4">SAMBEL KECAP</h6>
-                      <p class="description mt-3">Sangat cocok dimakan bersama tahu, tempe ataupun gorengan. Juga cocok dimakan bersama aneka jenis ikan goreng, ayam goreng dan yang semisalnya.</p>
-                      <div>
-                        <span class="badge badge-pill badge-lg badge-info">Rp. 10.000,-</span>
-                        <span class="badge badge-pill badge-danger">Baru</span>
-                      </div>
-                      <a href="#" class="btn btn-primary mt-4">Saya Beli Deh</a>
-                      <a href="#" class="btn btn-warning mt-4">
-                        <span class="ni ni-bag-17"></span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 pb-5">
-                  <div class="card card-lift--hover shadow border-0">
-                    <div class="card-body py-5">
-                      <img class="card-img-top" src="<?php echo base_url();?>assets-front\assets\img\theme\profile.jpg" alt="Card image cap">
-                      <h6 class="text-primary text-uppercase pt-4">SAMBEL KECAP</h6>
-                      <p class="description mt-3">Sangat cocok dimakan bersama tahu, tempe ataupun gorengan. Juga cocok dimakan bersama aneka jenis ikan goreng, ayam goreng dan yang semisalnya.</p>
-                      <div>
-                        <span class="badge badge-pill badge-lg badge-info">Rp. 10.000,-</span>
-                        <span class="badge badge-pill badge-danger">Baru</span>
-                      </div>
-                      <a href="#" class="btn btn-primary mt-4">Saya Beli Deh</a>
-                      <a href="#" class="btn btn-warning mt-4">
-                          <span class="ni ni-bag-17"></span>
-                        </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 pb-5">
-                  <div class="card card-lift--hover shadow border-0">
-                    <div class="card-body py-5">
-                      <img class="card-img-top" src="<?php echo base_url();?>assets-front\assets\img\theme\profile.jpg" alt="Card image cap">
-                      <h6 class="text-primary text-uppercase pt-4">SAMBEL KECAP</h6>
-                      <p class="description mt-3">Sangat cocok dimakan bersama tahu, tempe ataupun gorengan. Juga cocok dimakan bersama aneka jenis ikan goreng, ayam goreng dan yang semisalnya.</p>
-                      <div>
-                        <span class="badge badge-pill badge-lg badge-info">Rp. 10.000,-</span>
-                        <span class="badge badge-pill badge-danger">Baru</span>
-                      </div>
-                      <a href="#" class="btn btn-primary mt-4">Saya Beli Deh</a>
-                      <a href="#" class="btn btn-warning mt-4">
-                          <span class="ni ni-bag-17"></span>
-                        </a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Anda Harus Masuk Dulu</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="card bg-secondary shadow border-0">
-                <div class="card-header bg-white pb-5">
-                  <div class="text-muted text-center mb-0">
-                    <small>Masukan Username dan Password anda</small>
-                  </div>
-                </div>
-                <div class="card-body px-lg-5 py-lg-5">
-                  <form role="form" method="post">
-                    <div class="form-group mb-3">
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Username">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Password" type="password">
-                      </div>
-                    </div>
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                      <label class="custom-control-label" for=" customCheckLogin">
-                        <span>Remember me</span>
-                      </label>
-                    </div>
-                    <div class="text-center">
-                      <button type="button" class="btn btn-primary my-4">Masuk</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  </main>
-  <footer class="footer has-cards">
+        <!-- /.container-fluid -->
+      </nav>
+    </header>
+<!-- Full Width Column -->
+<div class="content-wrapper" >
     <div class="container">
-      <hr>
-      <div class="row align-items-center justify-content-md-between">
-        <div class="col-md-6">
-          <div class="copyright">
-            &copy; 2019
-            <a href="https://www.creative-tim.com" target="_blank"><?php echo APP_NAME ?></a> 
+      <!-- Content Header (Page header) -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>LANDING PAGE</h2>
           </div>
+        <!-- /.col -->
         </div>
-        <div class="col-md-6">
-          <ul class="nav nav-footer justify-content-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank"><?php echo APP_NAME ?></a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">Tentang Kami</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+        <!-- /.box -->
+      </section>
+      <!-- /.content -->
     </div>
-  </footer>
-  <!-- Core -->
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/popper/popper.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/headroom/headroom.min.js"></script>
-  <!-- Optional JS -->
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/onscreen/onscreen.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/nouislider/js/nouislider.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-  <!-- Argon JS -->
-  <script src="<?php echo base_url();?>assets-front/assets/js/argon.js?v=1.0.0"></script>
+    <!-- /.container -->
+  </div>
+  </div>
 
-  <!-- <script>
-    $('#loginModal').modal('show');
-  </script> -->
-</body>
-
+  <!-- jQuery 3 -->
+  <script src="<?php echo base_url();?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="<?php echo base_url();?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="<?php echo base_url();?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="<?php echo base_url();?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
+  </body>
+  <?php
+    if($this->session->flashdata('info')){
+        if( $this->session->flashdata('info')['from'] ){
+            echo"
+            <script >
+                alert('data berhasil di input');
+            </script>
+            ";
+        }else{
+            echo"
+            <script >
+                alert('data gagal di input');
+            </script>
+            ";
+        }
+      }
+    ?>
 </html>

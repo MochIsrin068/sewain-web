@@ -1,137 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title><?php echo APP_NAME ?></title>
+    <meta name="description" content="<?php echo APP_NAME ?>" />
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets/images/logo/icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/ace.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/ace-rtl.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title><?php echo APP_NAME ?></title>
-  <!-- Favicon -->
-  <link href="<?php echo base_url();?>assets/images/logo/icon.png" rel="icon" type="image/png">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <!-- Icons -->
-  <link href="<?php echo base_url();?>assets-front/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>assets-front/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Argon CSS -->
-  <link type="text/css" href="<?php echo base_url();?>assets-front/assets/css/argon.css?v=1.0.0" rel="stylesheet">
-  <!-- Docs CSS -->
-  <link type="text/css" href="<?php echo base_url();?>assets-front/assets/css/docs.min.css" rel="stylesheet">
-</head>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+        folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/_all-skins.min.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/morris.js/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/jvectormap/jquery-jvectormap.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-<body>
-  <header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
-      <div class="container">
-        <a class="navbar-brand mr-lg-5" href="../">
-            <img src="<?php echo base_url();?>assets/images/logo/icon.png"> <span class="text-brand"><?php echo APP_NAME ?></span>
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="<?php echo base_url() ?>">
+          <img src="<?php echo base_url();?>assets/images/logo/icon2.png" height="75px">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar_global">
-          <div class="navbar-collapse-header">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a href="../">
-                <img src="<?php echo base_url();?>assets/images/logo/icon.png"> <span class="text-brand"><?php echo APP_NAME ?></span>
-                </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </nav>
-  </header>
-  <main>
-    <section class="section section-shaped section-lg my-0">
-      <div class="shape shape-style-1 bg-gradient-default">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="container pt-lg-md">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="card bg-secondary shadow border-0">
-              <div class="card-header bg-white ">
-                <div class="text-muted text-center ">
-                  <small>Sign in </small>
-                </div>
-                <div class="">
-                <?php
-                  if($this->session->flashdata('alert')){
-                    echo $this->session->flashdata('alert');
-                  }
-                ?>
-                </div>
-              </div>
-              <div class="card-body px-lg-5 py-lg-5">
-                <?php echo form_open("");?>
-                  <div class="form-group mb-3">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input type="text" class="form-control" placeholder="Email" name="identity"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                      </div>
-                      <input type="password" class="form-control" placeholder="Password" name="user_password" />
-                    </div>
-                  </div>
-                  <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                    <label class="custom-control-label" for=" customCheckLogin">
-                      <span>Remember me</span>
-                    </label>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary my-4">Sign in</button>
-                  </div>
-                <?php echo form_close();?>
-              </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <?php
+          if($this->session->flashdata('alert')){
+            echo $this->session->flashdata('alert');
+          }else{
+            echo"
+            <div class='alert alert-info alert-dismissible'>
+              <h4><i class='icon fa fa-globe'></i> Information!</h4>
+              login
             </div>
-            <div class="row mt-3">
-              <div class="col-6">
-                <a href="#" class="text-light">
-                  <small>Forgot password?</small>
-                </a>
-              </div>
-              <div class="col-6 text-right">
-                <a href="<?php echo base_url("auth/register");?>" class="text-light">
-                  <small>Register</small>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- Core -->
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/popper/popper.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="<?php echo base_url();?>assets-front/assets/vendor/headroom/headroom.min.js"></script>
-  <!-- Argon JS -->
-  <script src="<?php echo base_url();?>assets-front/assets/js/argon.js?v=1.0.0"></script>
-</body>
+            ";
+          }
+        ?>
 
+        <?php echo form_open("");?>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="Phone Number" name="identity"/>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" name="user_password" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="checkbox icheck">
+                <label class="">
+                  <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"></div>  <a href="<?php echo base_url("auth/register");?>">Register</a>
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+
+    <!-- /.main-container -->
+    <script src="<?php echo base_url();?>assets/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+      if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url();?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+  </body>
 </html>

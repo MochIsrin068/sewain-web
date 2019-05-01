@@ -73,6 +73,9 @@ $config['error_end_delimiter']     = '</p>';	// Error message end delimiter
 | -------------------------------------------------------------------------
 | upload file.
 | -------------------------------------------------------------------------
-| Database table names.
 */
-$config['upload']['user_image_file_name']                  = 'JASAIN_USER_';
+$config['upload']['file_name']                  					= 'USER_';
+$config['upload']['upload_path']									= './uploads/users_photo/';
+$config['upload']['allowed_types']                 					= 'gif|jpg|png|jpeg';
+$config['upload']['overwrite']			           					= "true";
+$config['upload']['upload_config']['max_size']				        = 20000000;

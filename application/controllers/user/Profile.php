@@ -38,28 +38,27 @@ class Profile extends User_Controller {
 		$this->data[ "users" ] =  $this->user_auth->user(  )->result();
 		$this->form_validation->set_rules('user_first_name',  $this->lang->line('create_user_validation_fname_label'), 'trim|required');
 		$this->form_validation->set_rules('user_last_name', $this->lang->line('create_user_validation_lname_label') , 'trim|required');
-		$this->form_validation->set_rules('user_address', $this->lang->line('create_user_validation_address_label'), 'trim|required');
+		$this->form_validation->set_rules('user_phone', $this->lang->line('create_user_validation_phone_label'), 'trim|required');
 
 		if( !empty( $this->input->post('user_password') )  )
 		{
 			$this->form_validation->set_rules('user_password', $this->lang->line('create_user_validation_password_label') , 'required|min_length[' . $this->config->item('min_password_length', 'user_auth') . ']|max_length[' . $this->config->item('max_password_length', 'user_auth') . ']|matches[password_confirm]');
 			$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'trim|required');
+			$this->form_validation->set_rules('old_password', $this->lang->line('create_user_validation_old_password_confirm_label'), 'trim|required');
 		}
 
 		if ( $this->form_validation->run() === TRUE )
 		{
-			echo $this->input->post('user_password');
-			echo $this->input->post('user_first_name');
-			echo $this->input->post('user_last_name');
-			echo $this->input->post('user_address');
 			$data = array(
 				'user_first_name' => $this->input->post('user_first_name'),
 				'user_last_name' => $this->input->post('user_last_name'),
 				'user_address' => $this->input->post('user_address'),
+				'user_phone' => $this->input->post('user_phone'),
 			);
 			if ( $this->input->post('user_password') )
 			{
 				$data['user_password'] = $this->input->post('user_password');
+				$data['old_password'] = $this->input->post('old_password');
 			}
 
 			$user = $this->user_auth->user()->row();//curr user
@@ -68,17 +67,18 @@ class Profile extends User_Controller {
 			{
 				// redirect them back to the admin page if admin, or to the base url if non admin
 				$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::SUCCESS, $this->user_auth->messages() ) );
+				if ( $this->input->post('user_password') )
+				{
+					redirect(site_url('auth/logout'));  
+				}
 				redirect(site_url('user/profile'));  
-
 			}
 			else
 			{
 				// redirect them back to the admin page if admin, or to the base url if non admin
 				$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, $this->user_auth->errors() ) );
 				redirect(site_url('user/profile'));  
-
 			}
-
 		}
 		else
 		{
@@ -110,14 +110,14 @@ class Profile extends User_Controller {
 				// 	'class' => 'form-control',
 				// 	'value' => $this->form_validation->set_value('user_email', $user->user_email),
 				// );
-				// $this->data['user_phone'] = array(
-				// 	'name' => 'user_phone',
-				// 	'id' => 'user_phone',
-				// 	'type' => 'text',
-				// 	'placeholder' => 'Nomor HP',
-				// 	'class' => 'form-control',
-				// 	'value' => $this->form_validation->set_value('user_phone', $user->user_phone),
-				// );
+				$this->data['user_phone'] = array(
+					'name' => 'user_phone',
+					'id' => 'user_phone',
+					'type' => 'text',
+					'placeholder' => 'Nomor HP',
+					'class' => 'form-control',
+					'value' => $this->form_validation->set_value('user_phone', $user->user_phone),
+				);
 				$this->data['user_address'] = array(
 					'name' => 'user_address',
 					'id' => 'user_address',
@@ -125,6 +125,14 @@ class Profile extends User_Controller {
 					'placeholder' => 'Alamat',
 					'class' => 'form-control form-control-alternative',
 					'value' => $this->form_validation->set_value('user_address', $user->user_address),
+				);
+				$this->data['old_password'] = array(
+					'name' => 'old_password',
+					'id' => 'old_password',
+					'type' => 'password',
+					'placeholder' => 'Password lama',
+					'class' => 'form-control',
+					'value' => $this->form_validation->set_value('old_password'),
 				);
 				$this->data['user_password'] = array(
 					'name' => 'user_password',

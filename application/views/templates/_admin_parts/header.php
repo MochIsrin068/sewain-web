@@ -62,20 +62,13 @@
           <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                <?php if( !empty($this->session->userdata('user_profile_image_path')) ): ?>
-                    <img class="user-image" src="<?php echo base_url( "upload/user/" ).$this->session->userdata('user_profile_image_path') ?> " alt="Jason's Photo" />
-                <?php endif; ?>
+                <img class="user-image" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url('assets/images/logo/icon.png')  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
                 <?php echo $this->session->userdata('user_name')?>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <?php if( !empty($this->session->userdata('user_profile_image_path')) ): ?>
-                      <img class="nav-user-photo" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
-                  <?php else: ?>
-                      <img class="nav-user-photo" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
-                  <?php endif; ?>
+                  <img class="nav-user-photo" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url('assets/images/logo/icon.png')  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
                   <p>
                     <?php echo $this->session->userdata('user_name')?>
                     <small>Member since Nov. 2012</small>

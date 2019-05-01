@@ -6,7 +6,7 @@ class MY_Controller extends CI_Controller {
     {
        parent::__construct();
     }
-    protected function render($the_view = NULL, $template = 'master')
+    protected function render($the_view = NULL, $template = NULL)
 	{
 		if($template == 'json' || $this->input->is_ajax_request())
 		{
@@ -32,7 +32,7 @@ class User_Controller extends MY_Controller
        parent::__construct();
        if( !$this->user_auth->logged_in() ) redirect(site_url('/auth/login'));
     }
-    protected function render($the_view = NULL, $template = 'admin_master')
+    protected function render($the_view = NULL, $template = 'user_master')
 	{
 		parent::render($the_view, $template);
 	}
@@ -54,7 +54,6 @@ class Admin_Controller extends User_Controller
 
 class Public_Controller extends MY_Controller
 {
-
 	function __construct()
 	{
 		parent::__construct();

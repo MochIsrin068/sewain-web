@@ -74,6 +74,7 @@ $lang['create_user_validation_address_label']            = 'Alamat';
 $lang['create_user_validation_company_label']          = 'Nama Perusahaan';
 $lang['create_user_validation_password_label']         = 'Kata Sandi';
 $lang['create_user_validation_password_confirm_label'] = 'Konfirmasi Kata Sandi';
+$lang['create_user_validation_old_password_confirm_label'] = 'Konfirmasi Kata Lama';
 
 // Edit User
 $lang['edit_user_heading']                           = 'Ubah Pengguna';

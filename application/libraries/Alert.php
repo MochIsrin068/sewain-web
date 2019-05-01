@@ -31,7 +31,6 @@ class Alert  {
 				"icon" => "icon fa fa-ban",
 				"style" => "alert alert-warning alert-dismissible",
 			),
-			
 		);
 
 		return "
