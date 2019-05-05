@@ -86,9 +86,7 @@
             <div class="col-md-3">
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-box" src="<?php  echo $a =  ( empty($user->user_image) ) ?  base_url('assets-front').'/assets/img/theme/team-4-800x800.jpg' : base_url('uploads/users_photo/').$user->user_image ?>" >   
-
-                    
+                    <img class="profile-user-img img-responsive img-box" src="<?php  echo $a =  ( empty($user->user_image) ) ?  base_url(FAVICON_IMAGE) : base_url('uploads/users_photo/').$user->user_image ?>" >   
                     </div>
                     <!-- /.box-body -->
                 </div>

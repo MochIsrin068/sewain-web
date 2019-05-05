@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "http://localhost/my_core";
+$config['base_url'] = "http://localhost/sewain2";
 
 /*
 |--------------------------------------------------------------------------
@@ -524,3 +524,4 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+ 

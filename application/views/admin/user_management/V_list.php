@@ -41,7 +41,7 @@
                     <tbody>
                     <?php 
                     $no =1;
-
+                    
                     foreach( $users as $user ):
                         if(  $user->id_user == 1 ) continue;
                     ?>
@@ -80,7 +80,7 @@
                             <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
-                                <?php echo form_open("admin/admin/deleteUser");?>
+                                <?php echo form_open("admin/user_management/delete_user");?>
                                 <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">#Delete User</h4>

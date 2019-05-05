@@ -6,28 +6,29 @@
       'menuPath' => site_url("admin/"),
       'menuIcon' => "fa fa-file-archive-o",
       'menuChild' => array()
-    )
+    ),
+    array(
+      'menuId' => "user_management",
+      'menuName' => "User Management",
+      'menuPath' => site_url("admin/user_management"),
+      'menuIcon' => 'fa fa-times',
+      'menuChild' => array()
+    ),
+    array(
+      'menuId' => "group",
+      'menuName' => "Grouping",
+      'menuPath' => site_url("admin/group"),
+      'menuIcon' => 'fa fa-times',
+      'menuChild' => array()
+    ),
   );
 
-  $user_management = array(
-    'menuId' => "admin",
-    'menuName' => "User Management",
-    'menuPath' => site_url("admin/user_management"),
-    'menuIcon' => 'fa fa-times',
-    'menuChild' => array()
-  );
   $category = array(
     'menuId' => "category",
     'menuName' => "Kategori",
     'menuPath' => site_url("category"),
     'menuIcon' => 'fa fa-times'
   );
-
-  if( $this->user_auth->is_admin() ){
-    array_push($menus, $user_management) ;
-  }
-
-
 
 ?>
 <aside class="main-sidebar">
@@ -36,11 +37,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <?php if( !empty($this->session->userdata('user_profile_image_path')) ): ?>
-            <img class="img-circle" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
-        <?php else: ?>
-            <img class="img-circle" src="<?php echo base_url() ?>assets/images/logo/icon.png" alt="Jason's Photo" />
-        <?php endif; ?>
+            <img class="img-circle" src="<?php echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url(FAVICON_IMAGE)  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>" alt="Jason's Photo" />
       </div>
       <div class="pull-left info">
         <?php echo $this->session->userdata('user_name')?>

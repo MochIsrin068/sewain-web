@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_category extends MY_Model
+class M_book_service extends MY_Model
 {
     /**
 	 * Holds an array of tables used
@@ -14,31 +14,90 @@ class M_category extends MY_Model
     public function __construct()
 	{
 		parent::__construct();
-        $this->tables['category'] = "category";
+		$this->config->load('book_service', TRUE);
 		$this->lang->load('sewain');
+		$this->tables = $this->config->item('tables', 'book_service');
+		$this->join = $this->config->item('join', 'book_service');
 	}
 	/**
 	 * create
 	 *
 	 * @param array  $data
+	 * @param array  $genre_ids
 	 * @return static
 	 * @author madukubah
 	 */
-	public function create( $data )
+	public function create( $data,  $genre_ids )
     {
 		// Filter the data passed
-        $data = $this->_filter_data($this->tables['category'], $data);
+        $data["create_date"] = time();
+        $data = $this->_filter_data($this->tables['book'], $data);
 
-        $this->db->insert($this->tables['category'], $data);
-        $id = $this->db->insert_id($this->tables['category'] . '_id_seq');
+        $this->db->insert($this->tables['book'], $data);
+        $id = $this->db->insert_id($this->tables['book'] . '_id_seq');
 		
 		if( isset($id) )
 		{
-			$this->set_message('category_creation_successful');
+			$this->set_message('book_creation_successful');
+			$this->add_genres( $id, $genre_ids  );
 			return $id;
 		}
-		$this->set_error('category_creation_unsuccessful');
+		$this->set_error('book_creation_unsuccessful');
         return FALSE;
+	}
+	/**
+	 * add_genres
+	 *
+	 * @param array  $data
+	 * @param array  $data_param
+	 * @return bool
+	 * @author madukubah
+	 */
+	public function add_genres( $book_id, $genre_ids  )
+    {
+		$return = 0;
+		foreach( $genre_ids as $i => $genre_id )
+		{
+			if(
+				$this->db->insert(
+					$this->tables['book_genre'],
+					array(
+						$this->join['book'] => (float)$book_id,
+					  	$this->join['genre']  => (float)$genre_id
+					)
+				  )
+			){
+				$return++;
+			}
+		}
+		return $return;
+
+	}
+	/**
+	 * remove_genres
+	 *
+	 * @param array  $data
+	 * @param array  $data_param
+	 * @return bool
+	 * @author madukubah
+	 */
+	public function remove_genres( $data_param  )
+    {
+		$this->db->trans_begin();
+
+		$this->db->delete($this->tables['book_genre'], $data_param );
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+
+			$this->set_error('book_delete_unsuccessful');
+			return FALSE;
+		}
+
+		$this->db->trans_commit();
+
+		return TRUE;
+
 	}
 	/**
 	 * update
@@ -51,20 +110,20 @@ class M_category extends MY_Model
 	public function update( $data, $data_param  )
     {
 		$this->db->trans_begin();
-		$data = $this->_filter_data($this->tables['category'], $data);
+		$data = $this->_filter_data($this->tables['book'], $data);
 
-		$this->db->update($this->tables['category'], $data, $data_param );
+		$this->db->update($this->tables['book'], $data, $data_param );
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
 
-			$this->set_error('category_update_unsuccessful');
+			$this->set_error('book_update_unsuccessful');
 			return FALSE;
 		}
 
 		$this->db->trans_commit();
 
-		$this->set_message('category_update_successful');
+		$this->set_message('book_update_successful');
 		return TRUE;
 	}
 	/**
@@ -78,38 +137,38 @@ class M_category extends MY_Model
     {
 		$this->db->trans_begin();
 
-		$this->db->delete($this->tables['category'], $data_param );
+		$this->db->delete($this->tables['book'], $data_param );
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
 
-			$this->set_error('category_delete_unsuccessful');
+			$this->set_error('book_delete_unsuccessful');
 			return FALSE;
 		}
 
 		$this->db->trans_commit();
 
-		$this->set_message('category_delete_successful');
+		$this->set_message('book_delete_successful');
 		return TRUE;
 	}
 	/**
-	 * category
+	 * book
 	 *
 	 * @param int|array|null $id = id_categories
 	 * @return static
 	 * @author madukubah
 	 */
-	public function category( $id = NULL  )
+	public function book( $id = NULL  )
     {
 		if (isset($id))
 		{
-			$this->where($this->tables['category'].'.id', $id);
+			$this->where($this->tables['book'].'.id', $id);
         }
 
 		$this->limit(1);
-        $this->order_by($this->tables['category'].'.id', 'desc');
+        $this->order_by($this->tables['book'].'.id', 'desc');
 
-		$this->categories();
+		$this->books();
 
 		return $this;
 	}
@@ -118,9 +177,9 @@ class M_category extends MY_Model
     {
 		if (isset($query))
 		{
-			$this->like( "category.name" , $query );
+			$this->like( $this->tables['book']."title" , $query );
         }
-		$this->categories();
+		$this->books();
 
 		return $this;
 	}
@@ -131,7 +190,7 @@ class M_category extends MY_Model
 	 * @return static
 	 * @author madukubah
 	 */
-    public function categories(  )
+    public function books( $user_id = NULL )
     {
         if (isset($this->_ion_select) && !empty($this->_ion_select))
 		{
@@ -146,8 +205,23 @@ class M_category extends MY_Model
 		{
 			// default selects
 			$this->db->select(array(
-			    $this->tables['category'].'.*'
+			    $this->tables['book'].'.*',
+			    $this->tables['category'].'.name as category_name',
 			));
+		}
+		// 
+		// join with table_category
+		$this->db->distinct();
+		$this->db->join(
+			$this->tables['category'],
+			$this->tables['book'].'.'.$this->join['category'].'='.$this->tables['category'].'.id',
+			'inner'
+		);
+		// 
+		// filter by group id(s) if passed
+		if (isset($user_id))
+		{
+			$this->where($this->tables['book'].'.user_id', $user_id);
 		}
         // run each where that was passed
 		if ( isset($this->_ion_where) && ! empty($this->_ion_where) )
@@ -188,7 +262,7 @@ class M_category extends MY_Model
 			$this->_ion_order    = NULL;
 			$this->_ion_order_by = NULL;
 		}
-        $this->response = $this->db->get($this->tables['category']);
+        $this->response = $this->db->get($this->tables['book']);
 		return $this;
     }
     
@@ -206,7 +280,7 @@ class M_category extends MY_Model
 	 */
 	public function set_message($message)
 	{
-		$messageLang = $this->lang->line($message) ? $this->lang->line($message) : '##' . $message . '##';
+		$messageLang = $this->lang->line($message) ? $this->lang->line($message) : $message;
 		parent::set_message( $messageLang );
 	}
 	/**
@@ -221,7 +295,7 @@ class M_category extends MY_Model
 	 */
 	public function set_error( $error )
 	{
-		$errorLang = $this->lang->line($error) ? $this->lang->line($error) : '##' . $error . '##';
+		$errorLang = $this->lang->line($error) ? $this->lang->line($error) : $error;
 		parent::set_error( $errorLang );
 	}
 }

@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo APP_NAME ?></title>
     <meta name="description" content="<?php echo APP_NAME ?>" />
-    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets/images/logo/icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url().FAVICON_IMAGE;?>"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
  <!-- Bootstrap 3.3.7 -->
@@ -45,7 +45,7 @@
     <header class="main-header">
       <!-- Logo -->
       <a href="<?php echo site_url('admin');?>" class="logo">
-      <img  src="<?php echo base_url() ?>assets/images/logo/icon2.png" alt="Jason's Photo" height="75px" />
+      <img  src="<?php echo base_url().FAVICON_IMAGE ?>" alt="Jason's Photo" height="35px" />
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><?php echo APP_NAME ?></span>
         <!-- logo for regular state and mobile devices -->
@@ -62,13 +62,13 @@
           <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img class="user-image" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url('assets/images/logo/icon.png')  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
+                <img class="user-image" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url(FAVICON_IMAGE)  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
                 <?php echo $this->session->userdata('user_name')?>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img class="nav-user-photo" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url('assets/images/logo/icon.png')  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
+                  <img class="nav-user-photo" src="<?php  echo $a =  ( empty($this->session->userdata('user_image')) ) ?  base_url(FAVICON_IMAGE)  : base_url('uploads/users_photo/').$this->session->userdata('user_image') ?>">
                   <p>
                     <?php echo $this->session->userdata('user_name')?>
                     <small>Member since Nov. 2012</small>

@@ -44,7 +44,12 @@ class Admin_Controller extends User_Controller
     public function __construct()
     {
        parent::__construct();
-        if(!$this->user_auth->is_admin()) redirect(site_url('/auth/login'));
+		if(!$this->user_auth->is_admin()) 
+		{
+			$this->user_auth->logout();
+			$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, "anda harus menjadi admin!" ) );
+			redirect(site_url('/auth/login'));
+		}
     }
     protected function render($the_view = NULL, $template = 'admin_master')
 	{
@@ -58,7 +63,7 @@ class Public_Controller extends MY_Controller
 	{
 		parent::__construct();
     }
-    protected function render($the_view = NULL, $template = NULL)
+    protected function render($the_view = NULL, $template = 'public_master')
 	{
 		parent::render($the_view, $template);
 	}

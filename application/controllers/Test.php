@@ -41,18 +41,7 @@ class Test extends Public_Controller {
 		echo var_dump( $this->m_category->search( "keber" )->result() );
 		//  $this->jasain_service->upload_photo( "", 'table_service' );
 	}
-	public function delete_category()//ok
-	{
-		$data_param['id_category'] = 4; 
-		if( $this->m_category->delete( $data_param ) )
-		{
-			echo $this->m_category->messages();
-		}
-		else
-		{
-			echo $this->m_category->errors();
-		}
-	}
+
 	public function delete_portofolio()//ok
 	{
 		$data_param['id_service'] = 4; //ok for single data
@@ -369,115 +358,7 @@ class Test extends Public_Controller {
 		}
 	}
 
-	public function create_category()//ok
-	{
-		$id_user = $this->user_auth->user()->row();
-		if( $id_user == NULL ) redirect('test', 'refresh'); 
 
-		$this->load->helper('form');
-		$this->lang->load('jasain_service_lang');
-		$this->load->library( array( 'form_validation' ) ); 
 
-		$this->form_validation->set_rules('category_name',  $this->lang->line('category_name'), 'trim|required');
-		$this->form_validation->set_rules('category_description',  $this->lang->line('category_description'), 'trim|required');
-		if ( $this->form_validation->run() === TRUE )
-		{
-			$data['category_name'] = $this->input->post('category_name');
-			$data['category_description'] = $this->input->post('category_description');
-			
-			if($this->m_category->create( $data ))
-			{
-				echo $this->m_category->messages();
-			}
-			else
-			{
-				echo $this->m_category->errors();
-			}
-			
-		}
-		else
-		{
-			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->jasain_service->errors() ? $this->jasain_service->errors() : $this->session->flashdata('message')));
-
-			$this->data['category_name'] = array(
-				'name' => 'category_name',
-				'id' => 'category_name',
-				'type' => 'text',
-				'placeholder' => $this->lang->line('category_name'),
-				'class' => 'form-control',
-				'value' => $this->form_validation->set_value('category_name', 'category_name'),
-			);
-			$this->data['category_description'] = array(
-				'name' => 'category_description',
-				'id' => 'category_description',
-				'type' => 'text',
-				'placeholder' => $this->lang->line('category_description'),
-				'class' => 'form-control',
-				'value' => $this->form_validation->set_value('category_description', 'category_description' ),
-			);
-			$this->render( "V_test_page" );
-		}
-	}
-
-	public function edit_category( $id_category = NULL )//ok
-	{
-		$id_user = $this->user_auth->user()->row();
-		if( $id_category == NULL ) redirect('test', 'refresh'); 
-
-		$this->load->helper('form');
-		$this->lang->load('jasain_service_lang');
-		$this->load->library( array( 'form_validation' ) ); 
-
-		$this->form_validation->set_rules('category_name',  $this->lang->line('category_name'), 'trim|required');
-		$this->form_validation->set_rules('category_description',  $this->lang->line('category_description'), 'trim|required');
-		$this->form_validation->set_rules('id_category',  $this->lang->line('category_name'), 'trim|required');
-		if ( $this->form_validation->run() === TRUE )
-		{
-			$data['category_name'] = $this->input->post('category_name');
-			$data['category_description'] = $this->input->post('category_description');
-
-			$data_param['id_category'] = $this->input->post('id_category');
-
-			
-			if($this->m_category->update( $data, $data_param  ) )
-			{
-				echo $this->m_category->messages();
-			}
-			else
-			{
-				echo $this->m_category->errors();
-			}
-			
-		}
-		else
-		{
-			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->jasain_service->errors() ? $this->jasain_service->errors() : $this->session->flashdata('message')));
-
-			$category = $this->m_category->category( $id_category )->row();
-			$this->data['id_category'] = array(
-				'name' => 'id_category',
-				'id' => 'id_category',
-				'type' => 'hidden',
-				'class' => 'form-control',
-				'value' => $this->form_validation->set_value('id_category', $category->id_category),
-			);
-			$this->data['category_name'] = array(
-				'name' => 'category_name',
-				'id' => 'category_name',
-				'type' => 'text',
-				'placeholder' => $this->lang->line('category_name'),
-				'class' => 'form-control',
-				'value' => $this->form_validation->set_value('category_name', $category->category_name),
-			);
-			$this->data['category_description'] = array(
-				'name' => 'category_description',
-				'id' => 'category_description',
-				'type' => 'text',
-				'placeholder' => $this->lang->line('category_description'),
-				'class' => 'form-control',
-				'value' => $this->form_validation->set_value('category_description', $category->category_description ),
-			);
-			$this->render( "V_test_page" );
-		}
-	}
+	
 }
