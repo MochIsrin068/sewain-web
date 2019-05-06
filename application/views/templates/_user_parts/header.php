@@ -44,7 +44,7 @@
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
-      <a href="<?php echo site_url('admin');?>" class="logo">
+      <a href="<?php echo site_url();?>" class="logo">
       <img  src="<?php echo base_url().FAVICON_IMAGE ?>" alt="Jason's Photo" height="35px" />
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><?php echo APP_NAME ?></span>

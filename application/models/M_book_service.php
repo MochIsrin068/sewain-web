@@ -173,13 +173,13 @@ class M_book_service extends MY_Model
 		return $this;
 	}
 
-	public function search( $query = NULL  )
+	public function search( $query = NULL, $genre_ids = array() )
     {
 		if (isset($query))
 		{
-			$this->like( $this->tables['book']."title" , $query );
+			$this->like( $this->tables['book'].".title" , $query );
         }
-		$this->books();
+		$this->books( NULL, $genre_ids );
 
 		return $this;
 	}
@@ -190,7 +190,7 @@ class M_book_service extends MY_Model
 	 * @return static
 	 * @author madukubah
 	 */
-    public function books( $user_id = NULL )
+    public function books( $user_id = NULL, $genre_ids = array() )
     {
         if (isset($this->_ion_select) && !empty($this->_ion_select))
 		{
@@ -218,10 +218,33 @@ class M_book_service extends MY_Model
 			'inner'
 		);
 		// 
-		// filter by group id(s) if passed
+		// filter by user_id(s) if passed
 		if (isset($user_id))
 		{
 			$this->where($this->tables['book'].'.user_id', $user_id);
+		}
+		// filter by user_id(s) if passed
+		if (!empty($genre_ids))
+		{
+			if (!is_array($genre_ids))
+			{
+				$genre_ids = Array($genre_ids);
+			}
+			
+			if (isset($genre_ids) && !empty($genre_ids))
+			{
+				$this->db->distinct();
+				$this->db->join(
+				    $this->tables['book_genre'],
+				    $this->tables['book_genre'].'.'.$this->join['book'].'='.$this->tables['book'].'.id',
+				    'inner'
+				);
+			}
+			// foreach ( $genre_ids as $genre_id)
+			// {
+			// 	$this->db->where_in($this->tables['book_genre'].'.'.$this->join['genre'],  array( $genre_id ) ) ;
+			// }
+			$this->db->where_in($this->tables['book_genre'].'.'.$this->join['genre'],  ( $genre_ids ) ) ;
 		}
         // run each where that was passed
 		if ( isset($this->_ion_where) && ! empty($this->_ion_where) )

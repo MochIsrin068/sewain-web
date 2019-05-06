@@ -21,6 +21,13 @@
       'menuIcon' => 'fa fa-times',
       'menuChild' => array()
     ),
+    array(
+      'menuId' => "_iklan",
+      'menuName' => "Pengiklanan",
+      'menuPath' => site_url("admin/iklan"),
+      'menuIcon' => 'fa fa-times',
+      'menuChild' => array()
+    ),
   );
 
   $category = array(

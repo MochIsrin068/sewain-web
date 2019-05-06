@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2019 at 08:37 AM
+-- Generation Time: May 06, 2019 at 01:09 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_sewain`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisement`
+--
+
+CREATE TABLE `advertisement` (
+  `id` int(5) NOT NULL,
+  `description` text NOT NULL,
+  `image` text NOT NULL,
+  `create_date` int(11) NOT NULL,
+  `order` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertisement`
+--
+
+INSERT INTO `advertisement` (`id`, `description`, `image`, `create_date`, `order`) VALUES
+(7, 'asdf', 'IKLAN_1_1557140546.jpg', 0, 0),
+(8, 'asdffds', 'IKLAN_1_1557140570.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -193,8 +215,8 @@ CREATE TABLE `table_user` (
 --
 
 INSERT INTO `table_user` (`id_user`, `ip_address`, `user_username`, `user_password`, `user_email`, `user_phone`, `user_status`, `user_last_login`, `create_date`, `user_first_name`, `user_last_name`, `user_image`, `user_address`) VALUES
-(1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '081342989185', 1, 1557015601, 123443, 'muh alfalah', 'madukubah', 'USER_1_1556728458.jpeg', 'jalanan'),
-(15, '::1', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', '1234', 1, 1557038101, 1555585225, 'alan', 'hetfield', 'JASAIN_USER_15_1555585269.jpeg', 'jln mutiara no 8'),
+(1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '081342989185', 1, 1557109242, 123443, 'muh alfalah', 'madukubah', 'USER_1_1556728458.jpeg', 'jalanan'),
+(15, '::1', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', '1234', 1, 1557086655, 1555585225, 'alan', 'hetfield', 'JASAIN_USER_15_1555585269.jpeg', 'jln mutiara no 8'),
 (16, '::1', 'admin1@admin.com', '225bc7ac4aaa1e606a628e990fe2d398', 'admin1@admin.com', '1234', 1, 1556691983, 1556691974, 'alan', 'hetfield', '', 'jalanan'),
 (17, '::1', 'alin@alin.com', '827ccb0eea8a706c4c34a16891f84e7b', 'alin@alin.com', '4321', 1, 1557025469, 1557025453, 'alin', 'alin', '', 'alin');
 
@@ -223,6 +245,12 @@ INSERT INTO `table_user_group` (`id_user_group`, `id_user`, `id_group`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `book`
@@ -281,6 +309,12 @@ ALTER TABLE `table_user_group`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `book`

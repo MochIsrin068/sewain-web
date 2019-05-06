@@ -89,3 +89,4 @@ define('APP_NAME', 'Sewain');
 define('FAVICON_IMAGE', 'assets/images/logo/icon.png');
 define('ICON_IMAGE', 'assets/images/logo/icon.png');
 define('BOOK_PHOTO_PATH', 'uploads/book_photo/');
+define('ADVERTISEMENT_PHOTO_PATH', 'uploads/iklan_photo/');

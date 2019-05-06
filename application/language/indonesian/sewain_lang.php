@@ -51,3 +51,15 @@ $lang['image_only_one']				            = 'Gambar tinggal 1';
 
 $lang['add_label']                              = 'Tambah';
 $lang['edit_label']                             = 'Edit';
+
+// advertisement label
+$lang['advertisement_name']                              = 'Nama iklan';
+$lang['advertisement_description']                       = 'Deskripsi iklan';
+$lang['advertisement_order']                             = 'Urutan iklan';
+$lang['advertisement_image']                             = 'Gambar iklan';
+// advertisement Creation
+$lang['advertisement_creation_successful']				= 'iklan Berhasil Dibuat';
+$lang['advertisement_creation_unsuccessful']             = 'Gagal Membuat iklan';
+// advertisement delete
+$lang['advertisement_delete_successful']				    = 'iklan Berhasil Di hapus';
+$lang['advertisement_delete_unsuccessful']				= 'Gagal menghapus iklan';

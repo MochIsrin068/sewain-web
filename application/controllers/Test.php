@@ -9,6 +9,19 @@ class Test extends Public_Controller {
 			$this->load->model('m_category');
 			$this->load->library('graph');
 	}
+	public function post()
+    {
+        $data = $_POST['image'];
+     
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+     
+        $data = base64_decode($data);
+        $imageName = time().'.png';
+        file_put_contents('./uploads/'.$imageName, $data);
+     
+        echo 'done';
+    }
 	// public function index()
 	// {
 	// 	// echo var_dump( $data = $this->m_graph->graphs()->result() )."<br>";
