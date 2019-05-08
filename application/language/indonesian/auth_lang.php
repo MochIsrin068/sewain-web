@@ -22,6 +22,8 @@
 $lang['error_csrf'] = 'Form yang dikirim tidak lulus pemeriksaan keamanan kami.';
 
 // Login
+$lang['login_not_login']         = 'anda harus login';
+$lang['login_must_admin']         = 'anda harus menjadi admin!';
 $lang['login_heading']         = 'Login';
 $lang['login_subheading']      = 'Silakan login dengan email/username dan password anda.';
 $lang['login_identity_label']  = 'Email/Username:';

@@ -53,7 +53,6 @@ class Book extends User_Controller {
 			$this->data[ "page_title" ] = "Tambah Buku";
 			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->m_category->errors() ? $this->m_category->errors() : $this->session->flashdata('message')));
 			if( !empty($this->data['message']) )  $this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, $this->data['message'] ) );
-
 			$this->render( "user/book/V_add" );		
 		}
 	}
@@ -61,7 +60,6 @@ class Book extends User_Controller {
 	{
 		$id = ( isset( $id ) ) ? $id : $this->input->post('id');
 		if( $id == NULL ) redirect(site_url('user/book'));  
-
 
 		$this->load->helper('form');
 		$this->load->library( array( 'form_validation' ) ); 

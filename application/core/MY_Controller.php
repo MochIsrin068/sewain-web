@@ -29,8 +29,12 @@ class User_Controller extends MY_Controller
 {
     public function __construct()
     {
-       parent::__construct();
-       if( !$this->user_auth->logged_in() ) redirect(site_url('/auth/login'));
+	   parent::__construct();
+	   if( !$this->user_auth->logged_in() ) 
+	   {
+		$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER,  $this->lang->line('login_not_login')  ) );
+		   redirect(site_url('/auth/login'));
+	   }
     }
     protected function render($the_view = NULL, $template = 'user_master')
 	{
@@ -43,11 +47,10 @@ class Admin_Controller extends User_Controller
 {
     public function __construct()
     {
-       parent::__construct();
+	   parent::__construct();
 		if(!$this->user_auth->is_admin()) 
 		{
-			$this->user_auth->logout();
-			$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, "anda harus menjadi admin!" ) );
+			$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, $this->lang->line('login_must_admin') ) );
 			redirect(site_url('/auth/login'));
 		}
     }

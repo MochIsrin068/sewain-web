@@ -28,6 +28,13 @@
       'menuIcon' => 'fa fa-times',
       'menuChild' => array()
     ),
+    array(
+      'menuId' => "mobile",
+      'menuName' => "Mobile App",
+      'menuPath' => site_url("admin/mobile"),
+      'menuIcon' => 'fa fa-times',
+      'menuChild' => array()
+    ),
   );
 
   $category = array(

@@ -63,3 +63,8 @@ $lang['advertisement_creation_unsuccessful']             = 'Gagal Membuat iklan'
 // advertisement delete
 $lang['advertisement_delete_successful']				    = 'iklan Berhasil Di hapus';
 $lang['advertisement_delete_unsuccessful']				= 'Gagal menghapus iklan';
+
+// mobile label
+$lang['mobile_version']                              = 'Versi';
+$lang['mobile_message_code']                       = 'kode pesan';
+$lang['mobile_message']                             = 'isi pesan';

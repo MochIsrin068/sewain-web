@@ -16,6 +16,7 @@ class Iklan extends Admin_Controller {
 	}
 	public function add()
     {
+		if( !($_POST) )	redirect(site_url('admin/iklan'));  
         $this->load->library( array( 'form_validation' ) ); 
 
 		$this->form_validation->set_rules('image',  $this->lang->line('advertisement_image'), 'trim|required');
@@ -65,7 +66,7 @@ class Iklan extends Admin_Controller {
 
 		$data_param['id'] = $this->input->post('id');
 		$image = $this->input->post('image');
-		
+
 		if( $this->m_advertisement->delete( $data_param ) )
 		{
 			$upload = $this->config->item('upload', 'sewain');
